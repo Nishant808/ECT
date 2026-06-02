@@ -15,7 +15,7 @@ This repository contains the complete implementation, simulation engine, and val
 The codebase implements a decoupled, production-ready pipeline structured as follows:
 
 ```text
-PROJ/
+ECT/
 ├── MANUSCRIPT_DRAFT.tex     # Publication-grade LaTeX manuscript
 ├── references.bib           # Cross-checked BibTeX citation database
 ├── pipeline_runner.py       # Central orchestrator / execution entry point
