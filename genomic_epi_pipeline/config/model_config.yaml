@@ -1,0 +1,156 @@
+# Genomic Epidemiology Pipeline Configuration
+# This file contains all configurable parameters for the viral evolution prediction pipeline
+
+# Data Configuration
+data:
+  # Sequence data parameters
+  min_sequence_length: 25000
+  max_sequence_length: 35000
+  sequence_identity_threshold: 0.95
+  
+  # Environmental data parameters
+  temperature_range: [-20.0, 50.0]  # Celsius
+  humidity_range: [0.0, 100.0]     # Percentage
+  
+  # Temporal parameters
+  min_date: "2019-12-01"
+  max_date: "2024-01-01"
+  time_window_days: 30
+  
+  # Geographic parameters
+  geographic_resolution: "country"  # country, state, city
+  
+  # Host species categories
+  host_species:
+    - "human"
+    - "bat"
+    - "pangolin"
+    - "mink"
+    - "cat"
+    - "dog"
+    - "other"
+
+# Feature Engineering Configuration
+features:
+  # Sequence encoding parameters
+  encoding_method: "one_hot"  # one_hot, kmer, embedding
+  kmer_size: 3
+  sliding_window: 100
+  overlap: 50
+  
+  # Environmental feature normalization
+  temperature_normalization: "standard"  # standard, minmax, robust
+  categorical_encoding: "one_hot"        # one_hot, label, target
+  
+  # Temporal features
+  include_seasonal_features: true
+  include_trend_features: true
+  lag_features: [1, 7, 14, 30]  # Days
+  
+  # Feature selection
+  max_features: 10000
+  feature_selection_method: "variance"  # variance, mutual_info, chi2
+
+# Model Configuration
+model:
+  # Model architecture
+  model_type: "transformer"  # transformer, bayesian_nn, lstm
+  hidden_dim: 512
+  num_layers: 6
+  num_heads: 8
+  dropout_rate: 0.1
+  max_sequence_length: 1000
+  
+  # Bayesian parameters
+  use_bayesian: false
+  prior_scale: 1.0
+  posterior_samples: 100
+  
+  # Training parameters
+  batch_size: 32
+  learning_rate: 0.0001
+  num_epochs: 100
+  early_stopping_patience: 10
+  
+  # Regularization
+  weight_decay: 0.00001
+  gradient_clip_norm: 1.0
+  
+  # Loss function weights
+  mutation_prediction_weight: 1.0
+  fitness_prediction_weight: 0.5
+  temporal_consistency_weight: 0.3
+  
+  # Fitness scorer configuration
+  fitness_scorer:
+    hidden_dim: 256
+    num_layers: 3
+    dropout_rate: 0.1
+
+# Simulation Configuration
+simulation:
+  # Monte Carlo parameters
+  num_simulations: 10000
+  simulation_steps: 180  # Days
+  confidence_levels: [0.68, 0.95, 0.99]
+  
+  # Hindcasting parameters
+  hindcast_cutoff_date: "2020-12-01"
+  hindcast_duration_days: 180
+  
+  # Prediction parameters
+  prediction_horizon_days: 90
+  ensemble_size: 10
+  
+  # Validation parameters
+  cross_validation_folds: 5
+  test_split_ratio: 0.2
+
+# Computational Configuration
+compute:
+  # Device settings
+  device: "auto"  # auto, cpu, cuda, mps
+  num_workers: 4
+  pin_memory: true
+  
+  # Memory management
+  max_memory_gb: 16.0
+  batch_accumulation_steps: 1
+  
+  # Parallel processing
+  use_multiprocessing: true
+  max_processes: 8
+  
+  # Checkpointing
+  save_checkpoints: true
+  checkpoint_frequency: 10  # Every N epochs
+
+# Logging and Output Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_to_file: true
+  log_file: "pipeline.log"
+  
+output:
+  save_predictions: true
+  save_attention_maps: true
+  save_fitness_landscapes: true
+  output_format: "csv"  # csv, json, hdf5
+  
+# Experimental Features (Advanced)
+experimental:
+  # Multi-scale modeling
+  enable_multiscale: false
+  scales: ["nucleotide", "codon", "gene"]
+  
+  # Phylogenetic constraints
+  use_phylogenetic_constraints: false
+  phylogeny_weight: 0.1
+  
+  # Active learning
+  enable_active_learning: false
+  uncertainty_threshold: 0.5
+  
+  # Transfer learning
+  pretrained_model_path: null
+  freeze_encoder: false

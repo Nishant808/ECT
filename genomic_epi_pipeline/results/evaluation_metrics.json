@@ -1,0 +1,7 @@
+{
+  "nucleotide_accuracy": 0.9724444444444444,
+  "log_likelihood": -0.1077146542451068,
+  "perplexity": 1.1137299019413687,
+  "calibration_error": 0.7416666666666667,
+  "training_final_val_loss": 0.10215619951486588
+}
