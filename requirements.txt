@@ -1,0 +1,43 @@
+# Core scientific computing
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+scikit-learn>=1.3.0
+
+# Bioinformatics
+biopython>=1.81
+pysam>=0.21.0
+dendropy>=4.5.2
+
+# Deep learning and probabilistic modeling
+torch>=2.0.0
+torchvision>=0.15.0
+pyro-ppl>=1.8.0
+botorch>=0.9.0
+
+# Data visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# Configuration and utilities
+pyyaml>=6.0
+tqdm>=4.65.0
+joblib>=1.3.0
+
+# API and data fetching
+requests>=2.31.0
+urllib3>=2.0.0
+httpx>=0.24.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Jupyter notebooks
+jupyter>=1.0.0
+ipykernel>=6.25.0
+
+# Optional: GPU acceleration
+# cupy-cuda11x>=12.0.0  # Uncomment if using CUDA 11.x
+# cupy-cuda12x>=12.0.0  # Uncomment if using CUDA 12.x
